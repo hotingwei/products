@@ -1,12 +1,20 @@
-#讀取檔案
+import os #operating system
+
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f: #一個line是一個字串
-		if 'product,price' in line:
-			continue #一定要在迴圈裡，功能是跳到下一回
-		name, price = line.strip().split(',') #意思是先將換行的\n去除掉，再用','當作分割的標準
-		products.append([name, price])
-print(products)
+
+if os.path.isfile('products.csv'): #只給檔名是相對路徑，若是整個地址為絕對路徑 #path為模組、路徑
+	print('File Found.')
+	#讀取檔案
+	with open('products.csv', 'r', encoding='utf-8') as f:
+		for line in f: #一個line是一個字串
+			if 'product,price' in line:
+				continue #一定要在迴圈裡，功能是跳到下一回
+			name, price = line.strip().split(',') #意思是先將換行的\n去除掉，再用','當作分割的標準
+			products.append([name, price])
+	print(products)
+else:
+	print('File is not Found.')
+
 
 #讓使用者輸入
 while True:
